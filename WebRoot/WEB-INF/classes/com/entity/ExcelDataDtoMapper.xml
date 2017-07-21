@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+namespace:当前库表映射文件的命名空间，唯一的不能重复
+ -->
+<mapper namespace="com.entity.ExcelDataDtoMapper">
+	<!-- 
+		<resultMap type="excelData" id="BaseResultMap">
+		
+			column:库表的字段名
+			property:实体类里的属性名
+		
+		<id column="id" property="personId"/>
+		<result column="taskSource" property="name"/>
+		<result column="gender" property="gender"/>
+		<result column="person_addr" property="personAddr"/>
+		<result column="birthday" property="birthday"/>
+	    </resultMap>
+	 -->
+	<!-- 用于提取公用的sql片段 -->
+	<sql id="columns">
+		ID,TASKSOURCE,SUBMITTEDFIRST,SUBMITTEDSECOND,BYSAMPUNITNAME,UNITLOCATION,SAMPLOCATIONS,ANNUALSALES,BUSINESSLICENSE,FAX,PROVINCIAL,SAMPAREA,COUNTY,REGIONALTYPES,UNITADDRESS,ZIPCODE,UNITLEGALPERSON,UNITLEGALPERSONPHONE,UNITRESPONSIBLEPERSON,UNITRESPONSIBLEPERSONPHONE,SAMPLENAME,SAMPLEPROPERTIES,SAMPNUMBER,SAMPNUMBERUNIT,SAMPCODE,FOODCATE,FOODFIRSTCATE,FOODSECODCATE,FINEFOODCLASS,SAMPLEFORM,SAMPLETYPE,PACKAGECLASS,SAMPLESOURCE,PROCEDATE,SAMPMETHOD,SAMPTOOL, SAMPSIZE,SAMPBATCHNUMBER, PRODUCTIONDATE,SHELFLIFE,SHELFLIFEUNIT,LICENSENUM,TANDARDTECHNICALDOC,QUALITYGRADE,TRADEMARK,UNITPRICE,ISEXPORT,SAMPLINGBASE,SAMP,PRESAMPNUM,PROENTERPRISENAME,PROENTERPRISEADDRESS,PROENTERPRISEPROVINCES,PROENTERPRISEPERSON,PROENTERPRISEPHONE,SAMPLESTORAGECONDITION,TEMPERATURE,SAMPPACKING,HUMIDITY,SENDSAMPLEDATE,SENDSAMPLEADDRESS,SAMPUNITNOTE,SAMPUNITNAME,UNITLEVEL,SAMPERSONNEL,SAMPTIME,SAMPPHONE,RESPSAMPUNITPERSON,RESPSAMPUNITPERSONPHONE,RESPSAMPUNITPERSONEMAIL,SAMPUNITADDRESS,SAMPUNITZIPCODE,SAMPUNITFAX,INSPECTIONAGENCYNAME,TESTPURPOSE,REPORTNUMBER,ACCEPTCHECKDATE,REPORTDATE,REPORTISSUEDPERSON,CONPERSON,CONPERSONPHONE,CONPERSONEMAIL,INSPECTITEMS,INSPECTRESULTS,RESULTSUNIT,RESULTSDETERMINE,INSPECTIONBASIS,DECIDEBASIS,STANDARDMETHODLIMIT,STANDARDMETHODLIMITUNIT,METHODDETECTIONLIMIT,DETECTIONLIMITUNIT,STANDARDMINALLOWABLELIMIT,STANDARDMINALLOWABLELIMITUNIT,MINALLOWABLELIMIT,MINALLOWABLELIMITUNIT,STANDARDMAXALLOWABLELIMIT,STANDARDMAXALLOWABLELIMITUNIT,MAXALLOWABLELIMIT,MAXALLOWABLELIMITUNIT,INSTRUCTIONS,CONCLUSION,CONFIRMSITUATION,NOTE,FILLPERSON,FILLDATE,FILLPHONE,FILLEMAIL,STORAGECONDITION,UPDATETIME,CREATETIME,DEPARTMENT
+	</sql>
+	 
+	<!-- 
+		id:当前sql的唯一标识
+		parameterType：输入参数的数据类型
+		resultType：返回值的数据类型
+		#{}:用来接受参数的，如果是传递一个参数#{id}内容任意，如果是多个参数就有一定的规则,采用的是预编译的形式select * from person p where p.id = ? ，安全性很高
+	 -->
+
+		
+	<insert id="insertExcelData" parameterType="excelData">
+		<!-- 
+		keyProperty:实体类中的id属性名，当返回主键的时候就是返回给keyProperty
+		order：生成主键和执行insert语句的顺序，在mysql是AFTER，在oracle中使用BEFORE
+		resultType：主键返回的数据类型，和实体类中的主键的类型一致
+		select LAST_INSERT_ID()：mysql中生成主键的sql，oracle中select xxxx.nextval from dual
+		 -->
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into excelData (id,taskSource,submittedFirst,submittedSecond,bySampUnitName,unitlocation,samplocations,annualSales,businesslicense,fax,provincial,sampArea,county,regionalTypes,unitAddress,zipCode,unitlegalperson,unitlegalpersonphone,unitResponsiblePerson,unitResponsiblePersonPhone,sampleName,sampleProperties,sampNumber,sampNumberUnit,sampCode,foodCate,foodFirstCate,foodSecodCate,fineFoodClass,sampleForm,sampleType,packageClass,sampleSource,proceDate,sampMethod,sampTool, sampSize,sampBatchNumber, productionDate,shelflife,shelflifeUnit,licenseNum,tandardTechnicalDoc,qualityGrade,trademark,unitPrice,isExport,samplingBase,samp,preSampNum,proEnterpriseName,proEnterpriseAddress,proEnterpriseProvinces,proEnterprisePerson,proEnterprisePhone,sampleStorageCondition,temperature,sampPacking,humidity,sendSampleDate,sendSampleAddress,sampUnitNote,sampUnitName,unitLevel,samPersonnel,sampTime,sampPhone,respSampUnitPerson,respSampUnitPersonPhone,respSampUnitPersonEmail,sampUnitAddress,sampUnitZipCode,sampUnitFax,inspectionAgencyName,testPurpose,reportNumber,acceptCheckDate,reportDate,reportIssuedPerson,conPerson,conPersonPhone,conPersonEmail,inspectItems,inspectResults,resultsUnit,resultsDetermine,inspectionBasis,decideBasis,standardMethodLimit,standardMethodLimitUnit,methodDetectionLimit,detectionLimitUnit,standardMinAllowableLimit,standardMinAllowableLimitUnit,minAllowableLimit,minAllowableLimitUnit,standardMaxAllowableLimit,standardMaxAllowableLimitUnit,maxAllowableLimit,maxAllowableLimitUnit,instructions,conclusion,confirmSituation,note,fillPerson,fillDate,fillPhone,fillEmail,storageCondition,updateTime,createTime,department)
+		values(#{id},#{taskSource},#{submittedFirst},#{submittedSecond},#{bySampUnitName},#{unitlocation},#{samplocations},#{annualSales},#{businesslicense},#{fax},#{provincial},#{sampArea},#{county},#{regionalTypes},#{unitAddress},#{zipCode},#{unitlegalperson},#{unitlegalpersonphone},#{unitResponsiblePerson},#{unitResponsiblePersonPhone},#{sampleName},#{sampleProperties},#{sampNumber},#{sampNumberUnit},#{sampCode},#{foodCate},#{foodFirstCate},#{foodSecodCate},#{fineFoodClass},#{sampleForm},#{sampleType},#{packageClass},#{sampleSource},#{proceDate},#{sampMethod},#{sampTool},#{ sampSize},#{sampBatchNumber},#{ productionDate},#{shelflife},#{shelflifeUnit},#{licenseNum},#{tandardTechnicalDoc},#{qualityGrade},#{trademark},#{unitPrice},#{isExport},#{samplingBase},#{samp},#{preSampNum},#{proEnterpriseName},#{proEnterpriseAddress},#{proEnterpriseProvinces},#{proEnterprisePerson},#{proEnterprisePhone},#{sampleStorageCondition},#{temperature},#{sampPacking},#{humidity},#{sendSampleDate},#{sendSampleAddress},#{sampUnitNote},#{sampUnitName},#{unitLevel},#{samPersonnel},#{sampTime},#{sampPhone},#{respSampUnitPerson},#{respSampUnitPersonPhone},#{respSampUnitPersonEmail},#{sampUnitAddress},#{sampUnitZipCode},#{sampUnitFax},#{inspectionAgencyName},#{testPurpose},#{reportNumber},#{acceptCheckDate},#{reportDate},#{reportIssuedPerson},#{conPerson},#{conPersonPhone},#{conPersonEmail},#{inspectItems},#{inspectResults},#{resultsUnit},#{resultsDetermine},#{inspectionBasis},#{decideBasis},#{standardMethodLimit},#{standardMethodLimitUnit},#{methodDetectionLimit},#{detectionLimitUnit},#{standardMinAllowableLimit},#{standardMinAllowableLimitUnit},#{minAllowableLimit},#{minAllowableLimitUnit},#{standardMaxAllowableLimit},#{standardMaxAllowableLimitUnit},#{maxAllowableLimit},#{maxAllowableLimitUnit},#{instructions},#{conclusion},#{confirmSituation},#{note},#{fillPerson},#{fillDate},#{fillPhone},#{fillEmail},#{storageCondition},#{updateTime},#{createTime},#{department})
+	</insert>
+	
+	<select id="selectAll" resultType="excelData">
+	 select  <include refid="columns"/> from  excelData;
+	</select>
+	
+	<select id="selectResultsDetermin" resultType="java.lang.String">
+	 select  DISTINCT RESULTSDETERMINE  from  excelData;
+	</select>
+	
+	<select id="selectResultsProvincial" resultType="java.lang.String">
+	 select  DISTINCT PROVINCIAL  from  excelData;
+	</select>
+	
+	<select id="selectCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+	 select  count(*)  from  excelData  where resultsDetermine =#{resultsDetermine} and provincial=#{provincial};
+	</select>
+	<select id="selectCountByList" resultType="java.lang.Integer" parameterType="java.lang.String">
+	 select  count(*)  from  excelData  where resultsDetermine =#{resultsDetermine} and provincial=#{provincial};
+	</select>
+	
+</mapper>

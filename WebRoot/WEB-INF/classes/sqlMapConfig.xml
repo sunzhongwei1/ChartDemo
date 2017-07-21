@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- 自定义别名：
+				type：要定义的数据类型
+				alias：别名的名字
+			非自定义别名：
+				规则：别名jdk提供的所有的类的名字不区分大小写，如果是包装类那么直接使用其基本类型也可以
+		 -->
+		<typeAlias type="com.entity.ExcelDataDto" alias="excelData"/>
+	</typeAliases>
+	<!-- 集中管理库表的映射文件 -->
+	<mappers>
+		<mapper resource="com/entity/ExcelDataDtoMapper.xml" />
+	</mappers>
+</configuration>
